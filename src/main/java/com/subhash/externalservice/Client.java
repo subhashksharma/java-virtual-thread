@@ -11,10 +11,20 @@ public class Client {
 
     public static String getProduct(int productId) throws MalformedURLException {
 
-        try(InputStream stream = URI.create(PRODUCT_URL.formatted(productId)).toURL().openStream()) {
+        return getByte(productId);
+    }
+
+    public static String getRating(int ratingId) throws MalformedURLException {
+
+        return getByte(ratingId);
+    }
+
+    private static String getByte(int id) {
+        try(InputStream stream = URI.create(PRODUCT_URL.formatted(id)).toURL().openStream()) {
             return new String(stream.readAllBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
 }
